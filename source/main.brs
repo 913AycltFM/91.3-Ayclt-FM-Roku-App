@@ -3,12 +3,12 @@ sub Main()
     port = CreateObject("roMessagePort")
     screen.SetMessagePort(port)
 
-    scene = screen.CreateScene("RadioScene")
+    screen.CreateScene("RadioScene")
     screen.Show()
 
     while true
         message = wait(0, port)
-        if type(message) = " roSGScreenEvent "
+        if type(message) = "roSGScreenEvent"
             if message.IsScreenClosed()
                 return
             end if
