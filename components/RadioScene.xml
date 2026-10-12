@@ -2,14 +2,10 @@
 <component name="RadioScene" extends="Scene">
     <script type="text/brightscript" uri="pkg:/components/RadioScene.brs" />
     <children>
-        <Rectangle
-            id="background"
-            width="1280"
-            height="720"
-            color="0x071B35FF" />
+        <Rectangle id="background" width="1280" height="720" color="0x071B35FF" />
         <Label
             id="stationName"
-            translation="[100, 90]"
+            translation="[100, 65]"
             width="1080"
             height="90"
             text="91.3 Ayclt FM"
@@ -18,7 +14,7 @@
             horizAlign="center" />
         <Label
             id="tagline"
-            translation="[100, 180]"
+            translation="[100, 150]"
             width="1080"
             height="45"
             text="Dickinson's Texas #1 Hit Music Station"
@@ -26,10 +22,28 @@
             font="font:MediumSystemFont"
             horizAlign="center" />
         <Label
+            id="channelSelector"
+            translation="[100, 225]"
+            width="1080"
+            height="55"
+            text="◀  MAIN  •  HD2  •  HD3  ▶"
+            color="0xFFE18AFF"
+            font="font:MediumBoldSystemFont"
+            horizAlign="center" />
+        <Label
+            id="channelHint"
+            translation="[100, 275]"
+            width="1080"
+            height="35"
+            text="Use LEFT / RIGHT to change stations"
+            color="0xB7C9E2FF"
+            font="font:SmallSystemFont"
+            horizAlign="center" />
+        <Label
             id="nowPlayingLabel"
-            translation="[120, 300]"
+            translation="[120, 335]"
             width="1040"
-            height="90"
+            height="80"
             text="Now Playing: Connecting to the station..."
             color="0xFFFFFFFF"
             font="font:MediumBoldSystemFont"
@@ -37,9 +51,9 @@
             wrap="true" />
         <Label
             id="djLabel"
-            translation="[120, 390]"
+            translation="[120, 415]"
             width="1040"
-            height="50"
+            height="45"
             text=""
             color="0xB7C9E2FF"
             font="font:MediumSystemFont"
@@ -58,7 +72,7 @@
             translation="[120, 620]"
             width="1040"
             height="40"
-            text="OK / Play: Start   •   Pause: Pause   •   Back: Exit"
+            text="OK / Play: Start   •   Pause: Pause   •   LEFT / RIGHT: Change station"
             color="0xB7C9E2FF"
             font="font:SmallSystemFont"
             horizAlign="center" />
