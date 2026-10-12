@@ -1,35 +1,30 @@
 # 91.3 Ayclt FM Roku App
 
-A Roku SceneGraph starter app for listening to 91.3 Ayclt FM.
+A Roku SceneGraph starter app for listening to the 91.3 Ayclt FM radio streams.
 
-## Station endpoints
+## Stations
 
-- **Live stream:** https://radio.913aycltfm.com/listen/91.3_ayclt_fm/roku
-- **AzuraCast now-playing API:** https://radio.913aycltfm.com/api/nowplaying/91.3_ayclt_fm
+- **Main:** https://radio.913aycltfm.com/listen/91.3_ayclt_fm/roku
+- **HD2:** https://radio.913aycltfm.com/listen/91.3_ayclt_fm_hd2/roku
+- **HD3:** https://radio.913aycltfm.com/listen/91.3_ayclt_fm_hd3/roku
 
-## Features in this starter
+The app also reads the matching AzuraCast now-playing API endpoint for each station using `/api/nowplaying/{station-slug}`.
 
-- Station-branded radio screen
-- Live audio playback controls
-- Current song and artist from AzuraCast
-- On-air streamer name when supplied by the API
-- Refreshes now-playing information every 30 seconds
+## Controls
+
+- **Left / Right:** Switch between Main, HD2, and HD3
+- **OK / Play:** Start the selected live stream
+- **Pause:** Pause the stream
+
+If audio is playing while you switch stations, the app attempts to start playback on the newly selected station.
 
 ## Source layout
 
 - `manifest` — Roku channel metadata
 - `source/main.brs` — app entry point
-- `components/RadioScene.xml` and `components/RadioScene.brs` — screen and playback controls
-- `components/NowPlayingTask.xml` and `components/NowPlayingTask.brs` — background API request
+- `components/RadioScene.xml` and `components/RadioScene.brs` — station screen, selector, and playback controls
+- `components/NowPlayingTask.xml` and `components/NowPlayingTask.brs` — background now-playing API request
 
-## Status and next steps
+## Testing and publishing
 
-This repository contains source code; it is **not yet a published Roku channel**. Playback has not been tested on a physical Roku device from this repository.
-
-Before publishing:
-1. Test the stream and verify its actual media format on a Roku device.
-2. Add Roku-compliant channel artwork and any other assets required by the current Roku submission flow.
-3. Test playback, pause/resume, now-playing updates, and network-error behavior.
-4. Submit the channel through the Roku developer dashboard and complete Roku's review/publishing requirements.
-
-The player is configured for an MP3 stream. If the provided AzuraCast /roku endpoint serves another format or redirects in a way Roku does not support, adjust the content stream format and endpoint after testing.
+This repository contains app source code; it is not yet a published Roku channel. Playback and station switching must be tested on a physical Roku device before submission. The code currently declares MP3 stream format for all three streams; verify that each endpoint is Roku-compatible and adjust formats if needed. Complete the required artwork, testing, and Roku developer publishing/review steps before distributing the channel.
