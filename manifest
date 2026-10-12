@@ -1,0 +1,9 @@
+title=91.3 Ayclt FM
+major_version=1
+minor_version=0
+build_version=00001
+mm_icon_focus_hd=pkg:/images/icon_focus_hd.png
+mm_icon_side_hd=pkg:/images/icon_side_hd.png
+splash_screen_color=0x071B35FF
+splash_min_time=1
+ui_resolutions=hd
