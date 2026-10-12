@@ -1,5 +1,4 @@
 const STREAM_URL = "https://radio.913aycltfm.com/listen/91.3_ayclt_fm/roku"
-const NOW_PLAYING_URL = "https://radio.913aycltfm.com/api/nowplaying/91.3_ayclt_fm"
 
 sub init()
     m.audio = m.top.findNode("audio")
@@ -88,19 +87,17 @@ sub onNowPlayingResult()
             artist = song.artist
             title = song.title
             if artist = invalid then artist = ""
-            if title = invalid then title = "Live radio"
+            if title = invalid or title = "" then title = "Live radio"
+
             if artist <> ""
                 m.nowPlayingLabel.text = "Now Playing: " + title + " — " + artist
             else
                 m.nowPlayingLabel.text = "Now Playing: " + title
             end if
         end if
-    end if
 
-    if data.station <> invalid
-        streamer = data.now_playing
-        if streamer <> invalid and streamer.streamer_name <> invalid and streamer.streamer_name <> ""
-            m.djLabel.text = "On air: " + streamer.streamer_name
+        if now.streamer_name <> invalid and now.streamer_name <> ""
+            m.djLabel.text = "On air: " + now.streamer_name
         else
             m.djLabel.text = ""
         end if
