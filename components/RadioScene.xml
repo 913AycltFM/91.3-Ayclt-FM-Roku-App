@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="RadioScene" extends="Scene">
+    <script type="text/brightscript" uri="pkg:/components/RadioScene.brs" />
+    <children>
+        <Rectangle
+            id="background"
+            width="1280"
+            height="720"
+            color="0x071B35FF" />
+        <Label
+            id="stationName"
+            translation="[100, 90]"
+            width="1080"
+            height="90"
+            text="91.3 Ayclt FM"
+            color="0xFFFFFFFF"
+            font="font:LargeBoldSystemFont"
+            horizAlign="center" />
+        <Label
+            id="tagline"
+            translation="[100, 180]"
+            width="1080"
+            height="45"
+            text="Dickinson's Texas #1 Hit Music Station"
+            color="0x70C7FFFF"
+            font="font:MediumSystemFont"
+            horizAlign="center" />
+        <Label
+            id="nowPlayingLabel"
+            translation="[120, 300]"
+            width="1040"
+            height="90"
+            text="Now Playing: Connecting to the station..."
+            color="0xFFFFFFFF"
+            font="font:MediumBoldSystemFont"
+            horizAlign="center"
+            wrap="true" />
+        <Label
+            id="djLabel"
+            translation="[120, 390]"
+            width="1040"
+            height="50"
+            text=""
+            color="0xB7C9E2FF"
+            font="font:MediumSystemFont"
+            horizAlign="center" />
+        <Label
+            id="statusLabel"
+            translation="[120, 500]"
+            width="1040"
+            height="55"
+            text="Press OK or Play to listen"
+            color="0x70C7FFFF"
+            font="font:MediumSystemFont"
+            horizAlign="center" />
+        <Label
+            id="helpLabel"
+            translation="[120, 620]"
+            width="1040"
+            height="40"
+            text="OK / Play: Start   •   Pause: Pause   •   Back: Exit"
+            color="0xB7C9E2FF"
+            font="font:SmallSystemFont"
+            horizAlign="center" />
+        <Audio id="audio" />
+        <Timer id="refreshTimer" repeat="true" duration="30" />
+        <NowPlayingTask id="nowPlayingTask" />
+    </children>
+</component>
