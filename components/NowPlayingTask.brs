@@ -3,8 +3,11 @@ sub init()
 end sub
 
 sub fetchNowPlaying()
+    slug = m.top.stationSlug
+    if slug = invalid or slug = "" then slug = "91.3_ayclt_fm"
+
     request = CreateObject("roUrlTransfer")
-    request.SetUrl("https://radio.913aycltfm.com/api/nowplaying/91.3_ayclt_fm")
+    request.SetUrl("https://radio.913aycltfm.com/api/nowplaying/" + slug)
     request.SetRequest("GET")
     request.AddHeader("Accept", "application/json")
     request.SetTimeout(10000)
