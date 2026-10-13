@@ -3,7 +3,7 @@ sub init()
         { name: "91.3 Ayclt FM", shortName: "MAIN", kind: "radio", slug: "91.3_ayclt_fm", stream: "https://radio.913aycltfm.com/listen/91.3_ayclt_fm/roku" },
         { name: "91.3 Ayclt FM HD2", shortName: "HD2", kind: "radio", slug: "91.3_ayclt_fm_hd2", stream: "https://radio.913aycltfm.com/listen/91.3_ayclt_fm_hd2/roku" },
         { name: "91.3 Ayclt FM HD3", shortName: "HD3", kind: "radio", slug: "91.3_ayclt_fm_hd3", stream: "https://radio.913aycltfm.com/listen/91.3_ayclt_fm_hd3/roku" },
-        { name: "91.3 Ayclt FM TV", shortName: "TV", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/37c1cf56-8954-42d5-b7a4-7c80abb86c48.m3u8" }
+        { name: "91.3 Ayclt FM TV", shortName: "TV", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/b502bd6f-86eb-4ca0-91c0-f09fb6a8f76e.m3u8" }
     ]
     m.stationIndex = 0
 
@@ -16,6 +16,7 @@ sub init()
     m.statusLabel = m.top.findNode("statusLabel")
     m.nowPlayingLabel = m.top.findNode("nowPlayingLabel")
     m.djLabel = m.top.findNode("djLabel")
+    m.helpLabel = m.top.findNode("helpLabel")
     m.nowPlayingTask = m.top.findNode("nowPlayingTask")
     m.refreshTimer = m.top.findNode("refreshTimer")
 
@@ -46,10 +47,11 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         changeStation(1)
         return true
     else if key = "back"
-        if m.video.visible and m.video.state <> "stopped"
+        if m.stations[m.stationIndex].kind = "tv"
             m.video.control = "stop"
             m.video.visible = false
-            m.statusLabel.text = "TV stopped. Press OK or Play to watch again."
+            showAppUI(true)
+            m.statusLabel.text = "TV stopped. Use LEFT / RIGHT to select a station."
             return true
         end if
         return false
@@ -69,6 +71,7 @@ sub changeStation(direction as Integer)
     m.audio.control = "stop"
     m.video.control = "stop"
     m.video.visible = false
+    showAppUI(true)
 
     m.stationIndex = m.stationIndex + direction
     if m.stationIndex < 0 then m.stationIndex = m.stations.Count() - 1
@@ -80,6 +83,15 @@ sub changeStation(direction as Integer)
     if wasPlaying then startSelectedStation()
 end sub
 
+sub showAppUI(show as Boolean)
+    m.stationName.visible = show
+    m.tagline.visible = show
+    m.channelSelector.visible = show
+    m.channelHint.visible = show
+    m.statusLabel.visible = show
+    m.helpLabel.visible = show
+end sub
+
 sub updateStationDisplay()
     station = m.stations[m.stationIndex]
     m.stationName.text = station.name
@@ -88,11 +100,8 @@ sub updateStationDisplay()
         m.tagline.text = "Live video feed"
         m.channelSelector.text = "◀   MAIN   •   HD2   •   HD3   •   [ TV ]   ▶"
         m.channelHint.text = "Press OK or Play to watch the live TV feed"
-        m.nowPlayingLabel.text = "91.3 Ayclt FM TV"
-        m.djLabel.text = ""
         m.nowPlayingLabel.visible = false
         m.djLabel.visible = false
-        m.video.visible = false
     else
         m.tagline.text = "Dickinson's Texas #1 Hit Music Station"
         m.channelHint.text = "Use LEFT / RIGHT to change stations"
@@ -121,6 +130,7 @@ sub startRadio()
     station = m.stations[m.stationIndex]
     m.video.control = "stop"
     m.video.visible = false
+    showAppUI(true)
 
     content = CreateObject("roSGNode", "ContentNode")
     content.url = station.stream
@@ -136,15 +146,16 @@ sub startTV()
     m.audio.control = "stop"
     m.nowPlayingLabel.visible = false
     m.djLabel.visible = false
+    showAppUI(false)
     m.video.visible = true
 
     content = CreateObject("roSGNode", "ContentNode")
     content.url = station.stream
     content.streamFormat = "hls"
     content.title = station.name
+    content.live = true
     m.video.content = content
     m.video.control = "play"
-    m.statusLabel.text = "Connecting to live TV..."
 end sub
 
 sub pauseSelectedStation()
@@ -182,15 +193,18 @@ sub onVideoStateChanged()
 
     state = m.video.state
     if state = "playing"
-        m.statusLabel.text = "LIVE — 91.3 Ayclt FM TV"
+        print "91.3 Ayclt FM TV is playing"
     else if state = "buffering"
-        m.statusLabel.text = "Buffering live TV..."
-    else if state = "paused"
-        m.statusLabel.text = "TV paused. Press OK or Play to resume."
+        print "Buffering live TV feed"
     else if state = "error"
-        m.statusLabel.text = "Could not play the TV feed. Check the stream URL and format."
+        print "TV feed playback error: verify URL, network access, and HLS encoding"
+        m.video.visible = false
+        showAppUI(true)
+        m.statusLabel.text = "Could not play TV. Check the stream URL and Roku compatibility."
     else if state = "finished"
-        m.statusLabel.text = "The TV stream stopped. Press OK to reconnect."
+        m.video.visible = false
+        showAppUI(true)
+        m.statusLabel.text = "TV stream ended. Press OK to reconnect."
     end if
 end sub
 
@@ -201,8 +215,6 @@ end sub
 sub refreshNowPlaying()
     station = m.stations[m.stationIndex]
     if station.kind = "tv"
-        m.nowPlayingLabel.text = "Live video feed"
-        m.djLabel.text = ""
         return
     end if
 
