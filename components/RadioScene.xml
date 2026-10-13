@@ -3,6 +3,13 @@
     <script type="text/brightscript" uri="pkg:/components/RadioScene.brs" />
     <children>
         <Rectangle id="background" width="1280" height="720" color="0x071B35FF" />
+        <Video
+            id="videoPlayer"
+            width="1280"
+            height="720"
+            translation="[0, 0]"
+            visible="false"
+            enableUI="false" />
         <Label
             id="stationName"
             translation="[100, 65]"
@@ -23,10 +30,10 @@
             horizAlign="center" />
         <Label
             id="channelSelector"
-            translation="[100, 225]"
-            width="1080"
+            translation="[60, 225]"
+            width="1160"
             height="55"
-            text="◀  MAIN  •  HD2  •  HD3  ▶"
+            text="◀  MAIN  •  HD2  •  HD3  •  TV  ▶"
             color="0xFFE18AFF"
             font="font:MediumBoldSystemFont"
             horizAlign="center" />
@@ -69,8 +76,8 @@
             horizAlign="center" />
         <Label
             id="helpLabel"
-            translation="[120, 620]"
-            width="1040"
+            translation="[80, 620]"
+            width="1120"
             height="40"
             text="OK / Play: Start   •   Pause: Pause   •   LEFT / RIGHT: Change station"
             color="0xB7C9E2FF"
