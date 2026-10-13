@@ -1,0 +1,39 @@
+name: Build Roku App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-source:
+    name: Create Roku source ZIP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify required Roku files
+        run: |
+          test -f manifest
+          test -d source
+          test -d components
+          echo "Required Roku app files found."
+
+      - name: Create ZIP with manifest at the archive root
+        run: |
+          mkdir -p dist
+          zip -r dist/91.3-Ayclt-FM-Roku-App.zip manifest source components images fonts             -x "*/.DS_Store" "*/Thumbs.db"
+        shell: bash
+
+      - name: Upload Roku ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 91.3-Ayclt-FM-Roku-App
+          path: dist/91.3-Ayclt-FM-Roku-App.zip
+          if-no-files-found: error
+          retention-days: 30
