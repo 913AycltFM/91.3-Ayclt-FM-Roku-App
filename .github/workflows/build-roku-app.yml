@@ -25,10 +25,15 @@ jobs:
           echo "Required Roku app files found."
 
       - name: Create ZIP with manifest at the archive root
+        shell: bash
         run: |
           mkdir -p dist
-          zip -r dist/91.3-Ayclt-FM-Roku-App.zip manifest source components images fonts             -x "*/.DS_Store" "*/Thumbs.db"
-        shell: bash
+          zip -r dist/91.3-Ayclt-FM-Roku-App.zip manifest source components
+          for dir in images fonts; do
+            if [ -d "$dir" ]; then
+              zip -r dist/91.3-Ayclt-FM-Roku-App.zip "$dir"
+            fi
+          done
 
       - name: Upload Roku ZIP artifact
         uses: actions/upload-artifact@v4
