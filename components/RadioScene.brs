@@ -3,11 +3,11 @@ sub init()
         { name: "91.3 Ayclt FM", shortName: "MAIN", kind: "radio", slug: "91.3_ayclt_fm", stream: "https://radio.913aycltfm.com/listen/91.3_ayclt_fm/roku" },
         { name: "91.3 Ayclt FM HD2", shortName: "HD2", kind: "radio", slug: "91.3_ayclt_fm_hd2", stream: "https://radio.913aycltfm.com/listen/91.3_ayclt_fm_hd2/roku" },
         { name: "91.3 Ayclt FM HD3", shortName: "HD3", kind: "radio", slug: "91.3_ayclt_fm_hd3", stream: "https://radio.913aycltfm.com/listen/91.3_ayclt_fm_hd3/roku" },
-        { name: "TV Feed 1", shortName: "TV1", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/37c1cf56-8954-42d5-b7a4-7c80abb86c48.m3u8" },
-        { name: "TV Feed 2", shortName: "TV2", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/b502bd6f-86eb-4ca0-91c0-f09fb6a8f76e.m3u8" },
-        { name: "TV Feed 3", shortName: "TV3", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/c421623b-6171-4fc8-8514-86993233d910.m3u8" },
-        { name: "TV Feed 4", shortName: "TV4", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/02f36ef2-64c7-446c-a5c8-ca2fca15d02e.m3u8" },
-        { name: "TV Feed 5", shortName: "TV5", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/034825aa-0374-40a9-8ebb-5cf4d3b05dfe.m3u8" }
+        { name: "91.3 Ayclt FM", shortName: "MAIN-TV", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/37c1cf56-8954-42d5-b7a4-7c80abb86c48.m3u8" },
+        { name: "91.3 Ayclt FM HD2", shortName: "HD2-TV", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/b502bd6f-86eb-4ca0-91c0-f09fb6a8f76e.m3u8" },
+        { name: "91.3 Ayclt FM HD3", shortName: "HD3-TV", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/c421623b-6171-4fc8-8514-86993233d910.m3u8" },
+        { name: "91.3 Ayclt FM Live Studio Cam", shortName: "LIVE-CAM", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/02f36ef2-64c7-446c-a5c8-ca2fca15d02e.m3u8" },
+        { name: "91.3 Ayclt FM Mobile Studio Cam", shortName: "MOBILE-CAM", kind: "tv", slug: "", stream: "https://tv.913aycltfm.com/memfs/034825aa-0374-40a9-8ebb-5cf4d3b05dfe.m3u8" }
     ]
     m.stationIndex = 0
 
