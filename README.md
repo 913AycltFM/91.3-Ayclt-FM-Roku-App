@@ -10,19 +10,19 @@ A Roku SceneGraph app for listening to the 91.3 Ayclt FM radio streams and watch
 
 ## TV feeds
 
-The Roku app includes five selectable TV feed entries. Their labels are temporary placeholders (TV Feed 1–5) until the preferred channel names are provided.
+The five TV feed entries use the channel names listed in the project's XMLTV guide:
 
-1. **TV Feed 1:** https://tv.913aycltfm.com/memfs/37c1cf56-8954-42d5-b7a4-7c80abb86c48.m3u8
-2. **TV Feed 2:** https://tv.913aycltfm.com/memfs/b502bd6f-86eb-4ca0-91c0-f09fb6a8f76e.m3u8
-3. **TV Feed 3:** https://tv.913aycltfm.com/memfs/c421623b-6171-4fc8-8514-86993233d910.m3u8
-4. **TV Feed 4:** https://tv.913aycltfm.com/memfs/02f36ef2-64c7-446c-a5c8-ca2fca15d02e.m3u8
-5. **TV Feed 5:** https://tv.913aycltfm.com/memfs/034825aa-0374-40a9-8ebb-5cf4d3b05dfe.m3u8
+1. **91.3 Ayclt FM:** https://tv.913aycltfm.com/memfs/37c1cf56-8954-42d5-b7a4-7c80abb86c48.m3u8
+2. **91.3 Ayclt FM HD2:** https://tv.913aycltfm.com/memfs/b502bd6f-86eb-4ca0-91c0-f09fb6a8f76e.m3u8
+3. **91.3 Ayclt FM HD3:** https://tv.913aycltfm.com/memfs/c421623b-6171-4fc8-8514-86993233d910.m3u8
+4. **91.3 Ayclt FM Live Studio Cam:** https://tv.913aycltfm.com/memfs/02f36ef2-64c7-446c-a5c8-ca2fca15d02e.m3u8
+5. **91.3 Ayclt FM Mobile Studio Cam:** https://tv.913aycltfm.com/memfs/034825aa-0374-40a9-8ebb-5cf4d3b05dfe.m3u8
 
 The app configures these URLs as HLS using Roku SceneGraph's `Video` node and `streamFormat = "hls"`. The availability, actual codecs, and successful playback of each URL have not been verified.
 
 ## Controls
 
-- **Left / Right:** Switch among Main, HD2, HD3, and TV Feed 1–5
+- **Left / Right:** Switch among the radio stations and the five named TV feeds
 - **OK / Play:** Start the selected radio stream or TV feed
 - **Pause:** Pause the selected stream
 - **Back:** Stop TV playback and return to the app menu
